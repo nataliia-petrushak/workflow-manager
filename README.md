@@ -43,4 +43,14 @@ Access the API documentation at http://localhost:8000/docs.
 1. Create a new workflow using the provided endpoints.
 2. Add nodes to the workflow specifying their types and configurations.
 3. Configure the nodes as needed.
-4. Initiate and execute the workflow to observe the detailed path from start to end node (in the end you will get a picture as you can see below)
+4. Initiate and execute the workflow to observe the detailed path from the start to end node (in the end you will get a picture as you can see below)
+
+<br><br>
+<h5>Here you can see all the graph</h5>
+<img width="636" alt="Screenshot 2024-02-28 at 23 59 11" src="https://github.com/nataliia-petrushak/workflow-manager/assets/87134904/b0960013-bfd7-46bc-b38b-7aedcdef89c6">
+<br><br>
+<h5>And in this picture you can see the shortest path due to conditions</h5>
+<img width="1440" alt="Screenshot 2024-02-28 at 23 59 36" src="https://github.com/nataliia-petrushak/workflow-manager/assets/87134904/84e57179-ffbe-45c4-8d8c-96a680fca22c">
+<br><br>
+<h5>Here you can see how the docs look like</h5>
+<img width="1430" alt="Screenshot 2024-02-28 at 23 58 53" src="https://github.com/nataliia-petrushak/workflow-manager/assets/87134904/653b2dee-4c41-4b65-bc16-d6b3b20672f1">
