@@ -1,7 +1,5 @@
 import networkx as nx
-import plotly.graph_objects as go
 import matplotlib.pyplot as plt
-from networkx.drawing.nx_agraph import to_agraph
 
 from src.validation import edges_validation
 from src.schemas import Workflow
