@@ -1,7 +1,6 @@
 from fastapi import FastAPI
 
-from src.routers import router as workflow_router
+from src.router import router
 
 app = FastAPI()
-app.include_router(workflow_router.routes)
-
+app.include_router(router)

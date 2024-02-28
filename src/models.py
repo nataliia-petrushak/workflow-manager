@@ -13,9 +13,9 @@ class MessageStatus(StrEnum):
 
 class NodeTypes(StrEnum):
     start = auto()
+    end = auto()
     message = auto()
     condition = auto()
-    end = auto()
 
 
 class DBWorkflow(Base):
@@ -23,6 +23,8 @@ class DBWorkflow(Base):
 
     id = Column(Integer, primary_key=True)
     name = Column(String, nullable=False)
+    nodes = relationship("DBNode", back_populates="workflow")
+    edges = relationship("DBEdge", back_populates="workflow")
 
 
 class DBNode(Base):
@@ -30,23 +32,14 @@ class DBNode(Base):
 
     id = Column(Integer, primary_key=True)
     node_type = Column(Enum(NodeTypes), nullable=False)
-    workflow_id = Column(Integer, ForeignKey("workflows"))
-    workflow = relationship("Workflow", back_populates="nodes")
+    text = Column(String(), nullable=True)
+    status = Column(Enum(MessageStatus), nullable=True)
+    condition = Column(Enum(MessageStatus), nullable=True)
+    workflow_id = Column(Integer, ForeignKey("workflows.id"))
 
-
-class DBMessageNode(DBNode):
-    __tablename__ = "message_nodes"
-
-    id = Column(Integer, ForeignKey("node.id"), primary_key=True)
-    text = Column(String(), nullable=False)
-    status = Column(Enum(MessageStatus), nullable=False)
-
-
-class DBConditionNode(DBNode):
-    __tablename__ = "condition_nodes"
-
-    id = Column(Integer, ForeignKey("node.id"), primary_key=True)
-    condition = Column(Enum(MessageStatus), nullable=False)
+    workflow = relationship(
+        "DBWorkflow", back_populates="nodes"
+    )
 
 
 class DBEdge(Base):
@@ -54,10 +47,10 @@ class DBEdge(Base):
 
     id = Column(Integer, primary_key=True)
     name = Column(String, nullable=True, default="")
-    workflow_id = Column(Integer, ForeignKey("workflows"))
-    start_node_id = Column(Integer, ForeignKey("node.id"))
-    end_node_id = Column(Integer, ForeignKey("node.id"))
+    workflow_id = Column(Integer, ForeignKey("workflows.id"))
+    start_node_id = Column(Integer, ForeignKey("nodes.id"))
+    end_node_id = Column(Integer, ForeignKey("nodes.id"))
 
     start_node = relationship("DBNode", foreign_keys=[start_node_id])
     end_node = relationship("DBNode", foreign_keys=[end_node_id])
-    workflow = relationship("Workflow", back_populates="edges")
+    workflow = relationship("DBWorkflow", back_populates="edges")

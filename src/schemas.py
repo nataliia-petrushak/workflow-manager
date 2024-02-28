@@ -19,11 +19,10 @@ class Workflow(WorkflowBase):
 
 class NodeBase(BaseModel):
     node_type: str
-    workflow_id: int
 
 
 class NodeCreate(NodeBase):
-    pass
+    workflow_id: int
 
 
 class Node(NodeBase):
@@ -34,32 +33,36 @@ class Node(NodeBase):
         orm_mode = True
 
 
-class MessageNodeBase(NodeBase):
+class MessageNodeBase(BaseModel):
     text: str
+    node_type: str = "message"
     status: MessageStatus
 
 
 class MessageNodeCreate(MessageNodeBase):
-    pass
+    workflow_id: int
 
 
 class MessageNode(MessageNodeBase):
     id: int
+    workflow: Workflow
 
     class Config:
         orm_mode = True
 
 
-class ConditionNodeBase(NodeBase):
+class ConditionNodeBase(BaseModel):
+    node_type: str = "condition"
     condition: MessageStatus
 
 
 class ConditionNodeCreate(ConditionNodeBase):
-    pass
+    workflow_id: int
 
 
 class ConditionNode(ConditionNodeBase):
     id: int
+    workflow: Workflow
 
     class Config:
         orm_mode = True
