@@ -1,5 +1,5 @@
 # Workflow Management API
-This API provides functionality for managing workflows using graph concepts. It allows users to create four types of nodes and includes features for managing graphs, implementing algorithms for determining paths from the initial to the final node.
+This API provides functionality for managing workflows using graph concepts. It allows users to create four types of nodes and includes features for managing graphs and implementing algorithms for determining paths from the initial to the final node.
 
 ### Description
 The Workflow Management API is designed to facilitate the creation and management of workflows. It utilizes the FastAPI framework along with Pydantic for handling web requests and integrates with the NetworkX library for graph management. The API includes endpoints for creating, updating, and deleting workflows, as well as for configuring and initiating workflows.
@@ -46,7 +46,7 @@ Access the API documentation at http://localhost:8000/docs.
 4. Initiate and execute the workflow to observe the detailed path from the start to end node (in the end you will get a picture as you can see below)
 
 <br><br>
-<h5>Here you can see all the graph</h5>
+<h5>Here you can see all the nodes and edges like in a model in the task</h5>
 <img width="636" alt="Screenshot 2024-02-28 at 23 59 11" src="https://github.com/nataliia-petrushak/workflow-manager/assets/87134904/b0960013-bfd7-46bc-b38b-7aedcdef89c6">
 <br><br>
 <h5>And in this picture you can see the shortest path due to conditions</h5>
